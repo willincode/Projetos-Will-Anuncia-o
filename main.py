@@ -5,7 +5,7 @@ nomes = []
 
 while True:
 
-    Opções = input("1-Cadastrar, 2-Listar, 3-Sair: ")
+    Opções = input("1-Cadastrar, 2-Listar, 3-Sair, 4-Remover: ")
 
     if Opções == '1':
         print('Cadastrar')
@@ -14,6 +14,8 @@ while True:
     elif Opções == '3':
         print('Você saiu do sistema')
         break
+    elif Opções == '4':
+        print('Qual código deseja remover?')
     else:
         print("Escolha uma opção válida")
 
@@ -35,9 +37,34 @@ while True:
     if Opções == "2":
         if len(nomes) == 0:
             print("Nenhum produto cadastrado!")
-        else:
-            for nome in nomes:
-                print(f' Nome Produto: {nome["nome"]}, Valor R$ {nome["Valor"]:.2f}')
+        
+    if Opções == "4":
+        if len(nomes) == 0:
+            print('Você não digitou nenhuma informação')
+            continue
+
+        for numero, produto in enumerate(nomes, start=1):
+            print(f'{numero}) {produto["nome"]} - R$ {produto["Valor"]:.2f}')
+
+        numero = input('Informe o código do produto: ')
+
+        if not numero.isdigit():
+            print('Opção inválida, digite um número!')
+            continue
+
+        numero = int(numero)
+        
+            
+        if numero < 1 or numero > len(nomes):
+                print("Opção inválida: número fora da lista")
+                
+        else: 
+             removido = nomes.pop(numero - 1)
+             print(f'Removido: {removido["nome"]}')
+             continue
+    else:
+        for nome in nomes:
+            print(f' Nome Produto: {nome["nome"]}, Valor R$ {nome["Valor"]:.2f}')
     
         
 
