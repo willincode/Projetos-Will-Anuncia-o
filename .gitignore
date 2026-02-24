@@ -3,3 +3,4 @@ __pycache__/
 .env
 .venv/
 .vscode/
+api_v2_produtos.json
